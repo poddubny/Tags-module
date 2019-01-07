@@ -1,4 +1,5 @@
-body {
+body 
+{
 	background-color: #A0F0ED;
 }
 
@@ -8,32 +9,75 @@ a
 	text-decoration: none;
 }
 
-.display__none {
+.d-none 
+{
 	display: none;
 }
-
-.block_from {
-	text-align: center;
-}
-
-#tags
+.d-block 
 {
-    border: 0;
-    outline: none;
-    padding: 4px;
-    display: inline;
-    /*background: greenyellow;*/
+	display: block;
 }
-
-.block_from {
+.tag-module 
+{
+	text-align: center;
 	width: 100%;
 	margin: 0 auto;
 	margin-top: 10px;
 	position: relative;
 	max-width: 304px;
 }
+.tag-module__field-box
+{
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0;
+}
+.tag-module__field
+{
+    border: 0;
+    outline: none;
+    padding: 4px;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    /*background: greenyellow;*/
+}
+.tag-module__remove{
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	width: 24px;
+	height: 24px;
+	background: #ecf3fa;
+	transition:0.3s;
+	cursor: pointer;
+}
+.tag-module__remove:hover{
+	background: #E3EAF1;
+}
+.tag-module__remove:active{
+	transform:scale(1.1);
+}
+.tag-module__remove:before,
+.tag-module__remove:after{
+	content: "";
+	width: 80%;
+	height: 1px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	background: #000;
+}
+.tag-module__remove:before{
+	transform:translate(-50%,-50%) rotate(-45deg);
+}
+.tag-module__remove:after{
+	transform:translate(-50%,-50%) rotate(45deg);
+}
 
-.tags_input {
+
+.tag-module__box
+{
     width: calc(100% - 16px);
     height: auto;
     padding: 8px;
@@ -44,28 +88,31 @@ a
     background: white;
     text-align: left;
     overflow: hidden;
+    position: relative;
 }
 
-.tags_input:focus {
+.tag-module__box:focus 
+{
   border-color: #7886D7;
 }
-
-.tags_pole
+.tag-module__tags-select
 {
+	margin: 2px 0;
 	padding-left: 0;
 	list-style: none;
 	font-size: 13px;
-	display: inline;
+	display: inline-block;
+	vertical-align: middle;
 }
-
-.tags_pole > li
+.tag-module__tags-select > li
 {
 	background: #ecf3fa;
 	display: inline-block;
+	vertical-align: middle;
 	padding: 4px;
 }
 
-.block_tags
+.tag-module__tags
 {
 	top: calc(100% - 1px);
 	background: #ffffff;
@@ -78,17 +125,17 @@ a
 	text-align: left;
 	overflow: hidden;
 }
-
-.tags_ul {
+.tag-module__list-tags {
 	padding-left: 10px;
 	padding-right: 10px;
 	list-style: none;
 }
-
-.tags_ul > li {
+.tag-module__list-tags > li {
 	background: #edf5fd;
 	margin: 0px 6px 0px 0px;
 	display: inline-block;
 	padding: 6px;
 	font-size: 14px;
 }
+
+

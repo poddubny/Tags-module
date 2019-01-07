@@ -6,18 +6,25 @@
 	<script type="text/javascript" src="assets/tags.js"></script>
 </head>
 <body>
-	<div class="block_from">
+	<div class="tag-module">
 		<h3>Tags</h3>
-		<div class="tags_input">
-			<ul class="tags_pole">
+		<div class="tag-module__box">
+			<ul class="tag-module__tags-select">
+				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
+				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
+				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
+				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
 				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
 			</ul>
-			<input type="text" id="tags" autocomplete="off" placeholder="Enter tags">
-		</div>
-			<div class="block_tags display__none">
-				<ul id="ul_tags" class="tags_ul">
-				</ul>
+			<div class="tag-module__field-box">
+				<div class="tag-module__remove"></div>
+				<input id="js_tags" class="tag-module__field" type="text" placeholder="Enter tags"  autocomplete="off">
 			</div>
+			
+		</div>
+		<div class="tag-module__tags d-none">
+			<ul id="js_list-tags" class="tag-module__list-tags"></ul>
+		</div>
 	</div>
 </body>
 </html>
