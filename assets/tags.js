@@ -1,25 +1,21 @@
 window.onload = function() {
 
-	var input, ul_tags, block_tags;
+	var input, ul_tags, module_search;
 
-	input = document.getElementById("tags");
-	ul_tags = document.getElementById("ul_tags");
-	block_tags = document.getElementsByClassName('block_tags')[0];
+	input = document.getElementById("js_tags");
+	ul_tags = document.getElementById("js_list-tags");
+	module_search = document.getElementsByClassName("tag-module__search")[0];
+	module_select = document.getElementsByClassName("tag-module__select")[0];
 
 	function clearInput(object) {
 		object.value = '';
 		return;
 	}
 
-	function addTags(tags) {
-		clearInput(input);
-		console.log(tags);
-	}
-
 	function clearBlock() {
-		if (block_tags.classList.contains("display__block")) {
-			block_tags.classList.remove("display__block");
-			block_tags.classList.add("display__none");
+		if (module_search.classList.contains("d-block")) {
+			module_search.classList.remove("d-block");
+			module_search.classList.add("d-none");
 		}
 		while (ul_tags.firstChild) {
 			ul_tags.removeChild(ul_tags.firstChild);
@@ -38,75 +34,113 @@ window.onload = function() {
 		return (result);
 	}
 
-	function getBoldTags(tags, index, count)
+	function checkExisting(tag)
+	{
+		//Проверка на существующий тег
+		return (0);
+	}
+
+	function checkTag(tag)
+	{
+		return (tag);
+	}
+
+	function addTag(tag)
+	{
+		tag = checkTag(tag);
+		if (!checkExisting(tag))
+		{
+			li = document.createElement("li");
+			a = document.createElement("a");
+			div = document.createElement("div");
+			div.classList.add("tag-module__remove");
+			a.setAttribute("href", "javascript:void(0);");
+
+			a.innerHTML = tag;
+			module_select.append(li);
+			li.append(a);
+			li.append(div);
+			clearInput(input);
+		}
+	}
+
+	// Makes str bold
+	function getBoldTag(tag, index, count)
 	{
 		var c, str;
 
 		c = 0;
 		str = [];
 		while (count--)
-			str[c++] = tags[index++];
+			str[c++] = tag[index++];
 		str = str.join("");
-		return (tags.replace(new RegExp(`(${str})`, ''), '<b>$1</b>'));
+		return (tag.replace(new RegExp(`(${str})`, ''), '<b>$1</b>'));
 	}
 
-	function enterTags(tags, index, count)
+	function ll()
 	{
-		var li, a;
+		alert(1123);
+	}
 
-		if (block_tags.classList.contains("display__none"))
-		{
-			block_tags.classList.remove("display__none");
-			block_tags.classList.add("display__block");
+	// Prints tags in the search box
+	function enterTags(tag, index, count)
+	{
+		var div, li, a;
+
+		if (module_search.classList.contains("d-none")) {
+			module_search.classList.remove("d-none");
+			module_search.classList.add("d-block");
 		}
 		li = document.createElement("li");
-		ul_tags.append(li);
 		a = document.createElement("a");
-		a.setAttribute("onclick","addTags('"+ tags +"');");
-		a.innerHTML = "#" + getBoldTags(tags, index, count);
+		a.setAttribute("href", "javascript:void(0);");
+		a.innerHTML = getBoldTag(tag, index, count);
+		ul_tags.append(li);
 		li.append(a);
 	}
 
-	function getTags(tags) {
-		var request, tags_arr, tags_json, c, index;
+	// Extract json file and send results
+	function getTags(tag) {
+		var c, request, tags_json, tags_arr, index;
 
 		tags_arr = [];
 		request = new XMLHttpRequest();
 		request.open('GET', 'base_tags.json');
 		request.onreadystatechange = function(e) {
-			if (this.readyState == 4) {
+			if (this.readyState == 4)
 				if (this.status == 200)
 				{
 					tags_json = JSON.parse(this.responseText);
 					for (c in tags_json) {
-						index = tags_json[c].search(shieldingRegExp(tags, 'gi'));
+						index = tags_json[c].search(shieldingRegExp(tag, 'gi'));
 						if (index != -1)
 							if (find(tags_arr, tags_json[c]) != -1)
-								enterTags(tags_json[c], index, tags.length);
+								enterTags(tags_json[c], index, tag.length);
 					}
 				}
-			}
 		}
 		request.send();
 	}
 
+	// Prohibit writing spaces
+	input.addEventListener("keydown", function() {
+		if (this.value.search(/\s/g, "") != -1)
+			this.value = this.value.replace(/\s/g, "");
+		// this.style.width = ((this.value.length + 1) * 8) + 'px';
+	});
+
+	// Events that catch, keystrokes, focus
 	input.addEventListener("keyup", function(k) {
+		this.value = this.value.trim();
 		if (k.keyCode == 13 || k.keyCode == 32) {
-			if (input.value.trim())
-				addTags(input.value.trim());
+			if (this.value)
+				addTag(this.value);
 			else
-				clearInput(input);
+				clearInput(this);
 		}
-		input.addEventListener("blur", function() {
-			if (input.value)
-			{
-				addTags(input.value);
-				// clearBlock();
-			}
-		});
-		if (input.value.trim())
-			searchTags(input.value.trim());
-		// else
-		// 	clearBlock();
+		if (this.value && this.value != '#')
+			searchTags(this.value);
+		else
+			clearBlock();
 	});
 }

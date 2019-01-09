@@ -24,7 +24,7 @@ a
 	margin: 0 auto;
 	margin-top: 10px;
 	position: relative;
-	max-width: 304px;
+	max-width: 360px;
 }
 .tag-module__field-box
 {
@@ -35,6 +35,7 @@ a
 .tag-module__field
 {
     border: 0;
+    max-width: 140px;
     outline: none;
     padding: 4px;
     display: inline-block;
@@ -43,14 +44,14 @@ a
     /*background: greenyellow;*/
 }
 .tag-module__remove{
-	position: relative;
-	display: inline-block;
-	vertical-align: middle;
-	width: 24px;
-	height: 24px;
-	background: #ecf3fa;
-	transition:0.3s;
-	cursor: pointer;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 14px;
+    height: 14px;
+    background: #ecf3fa;
+    transition: 0.3s;
+    cursor: pointer;
 }
 .tag-module__remove:hover{
 	background: #E3EAF1;
@@ -95,7 +96,7 @@ a
 {
   border-color: #7886D7;
 }
-.tag-module__tags-select
+.tag-module__select
 {
 	margin: 2px 0;
 	padding-left: 0;
@@ -104,15 +105,26 @@ a
 	display: inline-block;
 	vertical-align: middle;
 }
-.tag-module__tags-select > li
+
+.tag-module__select > li
 {
+	font-size: 13px;
 	background: #ecf3fa;
 	display: inline-block;
 	vertical-align: middle;
 	padding: 4px;
+	margin: 2px;
 }
 
-.tag-module__tags
+.tag-module__select > li > a
+{
+	border-right: 1px solid grey;
+	display: inline-block;
+	vertical-align: middle;
+	padding-right: 3px;
+}
+
+.tag-module__search
 {
 	top: calc(100% - 1px);
 	background: #ffffff;
@@ -125,12 +137,12 @@ a
 	text-align: left;
 	overflow: hidden;
 }
-.tag-module__list-tags {
+.tag-module__list {
 	padding-left: 10px;
 	padding-right: 10px;
 	list-style: none;
 }
-.tag-module__list-tags > li {
+.tag-module__list > li {
 	background: #edf5fd;
 	margin: 0px 6px 0px 0px;
 	display: inline-block;

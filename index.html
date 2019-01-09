@@ -9,21 +9,20 @@
 	<div class="tag-module">
 		<h3>Tags</h3>
 		<div class="tag-module__box">
-			<ul class="tag-module__tags-select">
-				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
-				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
-				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
-				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
-				<li><a href="javascript:void(0);" data-value="">#Tags</a></li>
+			<ul class="tag-module__select">
+				<li>
+					<a href="javascript:void(0);" data-value="">#Tags</a>
+					<div class="tag-module__remove"></div>
+				</li>
 			</ul>
 			<div class="tag-module__field-box">
-				<div class="tag-module__remove"></div>
-				<input id="js_tags" class="tag-module__field" type="text" placeholder="Enter tags"  autocomplete="off">
+				<!-- <div class="tag-module__remove"></div> -->
+				<input id="js_tags" class="tag-module__field" type="text" autocomplete="off">
 			</div>
 			
 		</div>
-		<div class="tag-module__tags d-none">
-			<ul id="js_list-tags" class="tag-module__list-tags"></ul>
+		<div class="tag-module__search d-none">
+			<ul id="js_list-tags" class="tag-module__list"></ul>
 		</div>
 	</div>
 </body>
